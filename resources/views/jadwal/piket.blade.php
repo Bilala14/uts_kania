@@ -54,7 +54,7 @@
 
 
     <div class="mt-3">
-        <a href="{{ url('/beranda') }}" class="btn btn-secondary">Kembali ke Beranda</a>
+        <a href="{{ url('jadwal-guru') }}" class="btn btn-secondary">Kembali ke Jadwal Guru</a>
     </div>
 </body>
 </html>
