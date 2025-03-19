@@ -1,37 +1,27 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-  <title>Document</title>
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <title>Jadwal Guru SD</title>
 </head>
 <body class="container mt-4">
-    <ul class="nav justify-content-center">
-        <h2 class="mb-4">Jadwal Guru Sekolah Dasar</h2>
+    <h2 class="mb-4 text-center">Jadwal Guru Sekolah Dasar</h2>
 
+    <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Active</a>
+            <a class="nav-link" href="{{ url('/jadwal/piket') }}">Jadwal Piket</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    
+    </ul>
+
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
     <!-- Form Tambah Jadwal -->
-    <form action="/jadwal/tambah" method="POST" class="mb-4">
+    <form action="{{ url('/jadwal/tambah') }}" method="POST" class="mb-4">
         @csrf
         <div class="row">
             <div class="col-md-3">
@@ -47,7 +37,7 @@
                     <option value="Rabu">Rabu</option>
                     <option value="Kamis">Kamis</option>
                     <option value="Jumat">Jumat</option>
-                    <option value="Jumat">Sabtu</option>
+                    <option value="Sabtu">Sabtu</option>
                 </select>
             </div>
             <div class="col-md-2">
@@ -72,7 +62,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($jadwal as $key => $data)
+            @forelse($jadwal_guru as $key => $data)
             <tr>
                 <td>{{ $key + 1 }}</td>
                 <td>{{ $data['nama_guru'] }}</td>
@@ -80,7 +70,7 @@
                 <td>{{ $data['hari'] }}</td>
                 <td>{{ $data['jam'] }}</td>
                 <td>
-                    <a href="/jadwal/hapus/{{ $key }}" class="btn btn-danger btn-sm">Hapus</a>
+                    <a href="{{ url('/jadwal/hapus/' . $key) }}" class="btn btn-danger btn-sm">Hapus</a>
                 </td>
             </tr>
             @empty
@@ -91,7 +81,7 @@
         </tbody>
     </table>
 
-  <script src="{{asset('js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>

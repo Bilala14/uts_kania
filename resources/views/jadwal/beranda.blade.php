@@ -8,11 +8,15 @@
    
 </head>
 <body class="container mt-5">
-    <h1 class="text-center">Selamat Datang di Sistem Penjadwalan Guru SD</h1>
+    <h1 class="text-center">Selamat Datang di Sistem Penjadwalan Guru SDN 4 Meuredu</h1>
+    <br>
+    <br>
     <p class="text-center">Sistem ini digunakan untuk melihat jadwal mengajar guru di sekolah dasar.</p>
-
+<br>
+<br>
+<br>
     <div class="text-center mt-4">
-        <a href="/jadwal" class="btn btn-primary">Lihat Jadwal Guru</a>
+        <a href="jadwal-guru" class="btn btn-primary">Lihat Jadwal Guru</a>
     </div>
 
     <script src="{{asset('js/bootstrap.min.js')}}"></script>

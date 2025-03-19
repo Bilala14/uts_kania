@@ -28,7 +28,7 @@
     </table>
 
     <div class="mt-3">
-        <a href="/" class="btn btn-secondary">Kembali ke Beranda</a>
+        <a href="/beranda" class="btn btn-secondary">Kembali ke Beranda</a>
     </div>
 </body>
 </html>
