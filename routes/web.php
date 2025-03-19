@@ -140,3 +140,6 @@ Route::get('/jadwal/piket', function () {
     return view('jadwal.piket', compact('jadwal_piket'));
 })->name('jadwal.piket');
 
+Route::get('/kalender', function () {
+    return view('jadwal.kalender');
+});

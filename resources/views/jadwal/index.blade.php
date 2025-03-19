@@ -45,11 +45,7 @@
 
     <div class="container w-80 mt-5 p-5 bg-white rounded shadow">
         <h2>Jadwal Mengajar Guru SDN 4 Meuredu</h2>
-        <div class="text-center mb-3">
-            <a href="{{ route('jadwal.piket') }}">Jadwal Piket</a>
-
-
-        </div>
+       
 
         <div class="mb-3 d-flex justify-content-between">
             <input type="text" class="form-control w-25" placeholder="Nama Guru">
@@ -96,6 +92,13 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="text-center mb-3">
+            <a href="{{ route('jadwal.piket') }}">Lihat Jadwal Piket</a>
+         <p class="text-center">
+            <a href="{{ url('/kalender') }}" class="text-primary">Lihat Kalender</a>
+         </p>
+         
+        </div>
     </div>
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
