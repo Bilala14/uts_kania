@@ -1,37 +1,73 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background: hsl(204, 95%, 74%);
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background: #90c3fd;
+        }
+        .alert {
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-  <form>
-    <div class="container">
-      <div class="row mt-5">
-          <div class="col-5 m-auto">
-           
-    <div class="mb-3" >
-      <label for="exampleInputEmail1" class="form-label">Masukkan Email</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Masukkan Kata Sandi</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Ingat Saya</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
 
-  <script src="{{asset('js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <div class="login-container">
+        <h2>Selamat Datang!
+          Silahkan Login
+        </h2>
 
+        @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+
+        <form action="{{ url('/login/proses') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Masuk</button>
+            
+            
+        </form>
+    </div>
 
 </body>
 </html>

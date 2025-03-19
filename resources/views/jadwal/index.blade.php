@@ -1,87 +1,104 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-  <title>Jadwal Guru SD</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <title>Jadwal Guru - SDN 4 Meuredu</title>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #b3e0ff, #80d0ff);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 900px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
 </head>
-<body class="container mt-4">
-    <h2 class="mb-4 text-center">Jadwal Guru Sekolah Dasar</h2>
+<body>
 
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('/jadwal/piket') }}">Jadwal Piket</a>
-        </li>
-    </ul>
+    <div class="container w-80 mt-5 p-5 bg-white rounded shadow">
+        <h2>Jadwal Mengajar Guru SDN 4 Meuredu</h2>
+        <div class="text-center mb-3">
+            <a href="{{ route('jadwal.piket') }}">Jadwal Piket</a>
 
-    @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
-    <!-- Form Tambah Jadwal -->
-    <form action="{{ url('/jadwal/tambah') }}" method="POST" class="mb-4">
-        @csrf
-        <div class="row">
-            <div class="col-md-3">
-                <input type="text" name="nama_guru" class="form-control" placeholder="Nama Guru" required>
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="mata_pelajaran" class="form-control" placeholder="Mata Pelajaran" required>
-            </div>
-            <div class="col-md-2">
-                <select name="hari" class="form-control">
-                    <option value="Senin">Senin</option>
-                    <option value="Selasa">Selasa</option>
-                    <option value="Rabu">Rabu</option>
-                    <option value="Kamis">Kamis</option>
-                    <option value="Jumat">Jumat</option>
-                    <option value="Sabtu">Sabtu</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <input type="text" name="jam" class="form-control" placeholder="Jam (08:00-09:00)" required>
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Tambah Jadwal</button>
-            </div>
         </div>
-    </form>
 
-    <!-- Tabel Jadwal -->
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Guru</th>
-                <th>Mata Pelajaran</th>
-                <th>Hari</th>
-                <th>Jam</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($jadwal_guru as $key => $data)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $data['nama_guru'] }}</td>
-                <td>{{ $data['mata_pelajaran'] }}</td>
-                <td>{{ $data['hari'] }}</td>
-                <td>{{ $data['jam'] }}</td>
-                <td>
-                    <a href="{{ url('/jadwal/hapus/' . $key) }}" class="btn btn-danger btn-sm">Hapus</a>
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="6" class="text-center">Belum ada jadwal.</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+        <div class="mb-3 d-flex justify-content-between">
+            <input type="text" class="form-control w-25" placeholder="Nama Guru">
+            <input type="text" class="form-control w-25" placeholder="Mata Pelajaran">
+            <select class="form-control w-25">
+                <option>Senin</option>
+                <option>Selasa</option>
+                <option>Rabu</option>
+                <option>Kamis</option>
+                <option>Jumat</option>
+                <option>Sabtu</option>
+            </select>
+            <input type="text" class="form-control w-25" placeholder="Jam (08:00 - 09:00)">
+            <button class="btn btn-primary">Tambah Jadwal</button>
+        </div>
 
-  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>No</th>
+                    <th>Nama Guru</th>
+                    <th>Mata Pelajaran</th>
+                    <th>Hari</th>
+                    <th>Jam</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($jadwal_guru as $index => $jadwal)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $jadwal['nama_guru'] }}</td>
+                    <td>{{ $jadwal['mata_pelajaran'] }}</td>
+                    <td>{{ $jadwal['hari'] }}</td>
+                    <td>{{ $jadwal['jam'] }}</td>
+                    <td>
+                        <a href="{{ url('/jadwal/edit/'.$index) }}" class="btn btn-success btn-sm">Edit</a>
+                        <a href="{{ url('/jadwal/hapus/'.$index) }}" class="btn btn-danger btn-sm"  
+                           onclick="return confirm('Apakah Anda yakin ingin menghapus jadwal ini?')">
+                           Hapus
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </body>
 </html>
