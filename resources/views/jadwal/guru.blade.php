@@ -1,41 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jadwal Guru - Sistem Penjadwalan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body style="background-color: #b3d9ff;">
+@extends('layout.master')
 
-    {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="beranda">Beranda</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/jadwal-guru">Jadwal Guru</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/jadwal-piket">Jadwal Piket</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/kalender">Kalender</a>
-                    </li>
-                </ul>
-                <a href="/logout" class="btn btn-danger">Logout</a>
-            </div>
-        </div>
-    </nav>
+@section('title', 'Jadwal Guru - Sistem Penjadwalan')
 
+@section('content')
     <div class="container mt-4">
-        <h2 class="text-center">Jadwal Guru</h2>
+        <h2 class="text-center mb-4 fw-bold">Jadwal Guru</h2>
+        <br>
 
         {{-- Menampilkan pesan sukses jika ada --}}
         @if(session('success'))
@@ -81,11 +51,10 @@
             </div>
         @endif
 
-        <div class="mt-3">
+        {{-- Tombol Tambah Jadwal di kanan bawah --}}
+        <div class="text-end mt-3">
             <a href="{{ url('/jadwal/tambah') }}" class="btn btn-primary">Tambah Jadwal</a>
+            <br><br><br><br><br><br><br><br> <br><br><br><br><br>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
