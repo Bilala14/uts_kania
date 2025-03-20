@@ -27,7 +27,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/profil">Profil Sekolah</a></li>
-              <li><a class="dropdown-item" href="/kontak">Kontak Sekolah</a></li>
+              <li><a class="dropdown-item" href="/maps-sekolah">Maps Sekolah</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/bantuan">Bantuan</a></li>
             </ul>
