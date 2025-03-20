@@ -4,26 +4,21 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-
-// Menampilkan halaman login
+// Halaman Login
 Route::get('/login', function () {
     return view('login');
 });
 
-// Proses login
+// Proses Login
 Route::post('/login/proses', function (Request $request) {
-    // Simulasi akun login (tanpa database)
     $akun = [
         'username' => 'admin',
-        'password' => '12345' // Ganti dengan password yang kamu inginkan
+        'password' => '12345'
     ];
 
-    // Cek kredensial
     if ($request->username === $akun['username'] && $request->password === $akun['password']) {
-        // Simpan sesi login
         Session::put('login', true);
         Session::put('username', $request->username);
-        
         return redirect('/beranda')->with('success', 'Login berhasil!');
     }
 
@@ -34,112 +29,130 @@ Route::post('/login/proses', function (Request $request) {
 Route::get('/logout', function () {
     Session::forget('login');
     Session::forget('username');
-
     return redirect('/login')->with('success', 'Anda telah logout.');
 });
 
-
 // Halaman Beranda
-Route::get('beranda', function () {
-    if (!Session::has('login')) {
-        return redirect('/login')->with('error', 'Silakan login terlebih dahulu!');
-    }
+Route::get('/beranda', function () {
     return view('jadwal.beranda');
 });
 
-
-// Pastikan Session Jadwal Guru Tidak Kosong
-Route::get('jadwal-guru', function () {
-    if (!Session::has('jadwal-guru')) {
-        Session::put('jadwal-guru', []);
-    }
-
-    $jadwal_guru = Session::get('jadwal-guru');
-    return view('jadwal.index', compact('jadwal_guru'));
+//Jadwal Guru
+Route::get('/jadwal-guru', function () {
+    $jadwal = Session::get('jadwal_guru', []);
+    return view('jadwal.guru', compact('jadwal'));
 });
 
-// Halaman Tambah Jadwal
+
+
+// Form Tambah Jadwal
 Route::get('/jadwal/tambah', function () {
     return view('jadwal.tambah');
 });
 
-
-// Proses Simpan Jadwal Baru
+// **Simpan Data Jadwal ke Session**
 Route::post('/jadwal/simpan', function (Request $request) {
-    $jadwal_guru = Session::get('jadwal-guru', []);
+    $jadwal = Session::get('jadwal_guru', []); // Ambil data jadwal dari session
 
-// Tambahkan data baru
-    $jadwal_guru[] = [
+    $data = [
+        'id' => count($jadwal) + 1,
         'nama_guru' => $request->nama_guru,
         'mata_pelajaran' => $request->mata_pelajaran,
         'hari' => $request->hari,
         'jam' => $request->jam,
+        'kelas' => $request->kelas,
     ];
 
-    Session::put('jadwal-guru', $jadwal_guru);
+    $jadwal[] = $data; // Tambahkan data baru ke array
+    Session::put('jadwal_guru', $jadwal); 
+    
+    // Simpan kembali ke session
+    Route::get('/cek-session', function () {
+        return response()->json(Session::all()); // Menampilkan semua session
+    });
+    
     return redirect('/jadwal-guru')->with('success', 'Jadwal berhasil ditambahkan!');
 });
 
-//  Halaman Edit Jadwal
+// **Edit Jadwal**
 Route::get('/jadwal/edit/{id}', function ($id) {
-    $jadwal_guru = Session::get('jadwal-guru', []);
+    $jadwal = Session::get('jadwal_guru', []);
+    $data = collect($jadwal)->firstWhere('id', $id);
 
-    if (!isset($jadwal_guru[$id])) {
-        return redirect('/jadwal-guru')->with('error', 'Data tidak ditemukan!');
+    if (!$data) {
+        return redirect('/jadwal-guru')->with('error', 'Data tidak ditemukan');
     }
 
-    return view('jadwal.edit', ['id' => $id, 'data' => $jadwal_guru[$id]]);
+    return view('jadwal.edit', compact('data'));
 });
 
-
-//  Proses Update Jadwal
+// **Update Jadwal**
 Route::post('/jadwal/update/{id}', function (Request $request, $id) {
-    $jadwal_guru = Session::get('jadwal-guru', []);
+    $jadwal = Session::get('jadwal_guru', []);
 
-    if (!isset($jadwal_guru[$id])) {
-        return redirect('/jadwal-guru')->with('error', 'Data tidak ditemukan!');
+    foreach ($jadwal as &$item) {
+        if ($item['id'] == $id) {
+            $item['nama_guru'] = $request->nama_guru;
+            $item['mata_pelajaran'] = $request->mata_pelajaran;
+            $item['hari'] = $request->hari;
+            $item['jam'] = $request->jam;
+            $item['kelas'] = $request->kelas;
+            break;
+        }
     }
 
-    // Update data berdasarkan ID
-    $jadwal_guru[$id] = [
-        'nama_guru' => $request->nama_guru,
-        'mata_pelajaran' => $request->mata_pelajaran,
-        'hari' => $request->hari,
-        'jam' => $request->jam,
-    ];
-
-    Session::put('jadwal-guru', $jadwal_guru);
+    Session::put('jadwal_guru', $jadwal);
     return redirect('/jadwal-guru')->with('success', 'Jadwal berhasil diperbarui!');
 });
 
-// Proses Hapus Jadwal
+// **Hapus Jadwal**
 Route::get('/jadwal/hapus/{id}', function ($id) {
-    $jadwal_guru = Session::get('jadwal-guru', []);
+    $jadwal = Session::get('jadwal_guru', []);
+    $jadwal = array_values(array_filter($jadwal, fn($item) => $item['id'] != $id));
 
-    if (!isset($jadwal_guru[$id])) {
-        return redirect('/jadwal-guru')->with('error', 'Data tidak ditemukan!');
-    }
-
-    unset($jadwal_guru[$id]);
-    $jadwal_guru = array_values($jadwal_guru); 
-
-    Session::put('jadwal-guru', $jadwal_guru);
+    Session::put('jadwal_guru', $jadwal);
     return redirect('/jadwal-guru')->with('success', 'Jadwal berhasil dihapus!');
 });
 
-// Route untuk halaman Jadwal Piket
-Route::get('/jadwal/piket', function () {
-    $jadwal_piket = [
-        ['hari' => 'Senin', 'guru' => ['Budi Santoso', 'Ani Widodo']],
-        ['hari' => 'Selasa', 'guru' => ['Ahmad Yani', 'Siti Aminah']],
-        ['hari' => 'Rabu', 'guru' => ['Rina Susanti', 'Joko Prasetyo']],
-        ['hari' => 'Kamis', 'guru' => ['Wahyudi', 'Dewi Sartika']],
-        ['hari' => 'Jumat', 'guru' => ['Bambang Supriadi', 'Kartini']],
-    ];
-
+//Jadwal Piket
+Route::get('/jadwal-piket', function () {
+    $jadwal_piket = Session::get('jadwal_piket', []);
     return view('jadwal.piket', compact('jadwal_piket'));
-})->name('jadwal.piket');
+});
 
+// Form Tambah Piket
+Route::get('/jadwal-piket/tambah', function () {
+    return view('jadwal.tambah_piket');
+});
+
+// Simpan Jadwal Piket
+Route::post('/jadwal-piket/simpan', function (Request $request) {
+    $jadwal_piket = Session::get('jadwal_piket', []);
+    $jadwal_piket[] = [
+        'hari' => $request->hari,
+        'guru' => $request->guru,
+    ];
+    Session::put('jadwal_piket', $jadwal_piket);
+    return redirect('/jadwal-piket')->with('success', 'Jadwal Piket berhasil ditambahkan!');
+});
+
+// Kalender
 Route::get('/kalender', function () {
     return view('jadwal.kalender');
 });
+
+// Provil Sekolahnya
+Route::get('/profil', function () {
+    return view('profil');
+});
+
+// maps sekolah
+Route::get('/maps-sekolah', function () {
+    return view('jadwal.maps');
+});
+
+// Bantuan
+Route::get('/bantuan', function () {
+    return view('jadwal.bantuan');
+});
+
