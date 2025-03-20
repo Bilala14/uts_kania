@@ -6,11 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Beranda - Sistem Penjadwalan Guru</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #b3d9ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            width: 80%;
+            max-width: 900px;
+            padding: 40px;
+        }
+    </style>
 </head>
-<body style="background-color: #b3d9ff;"> <!-- Latar belakang biru muda -->
+<body>
   
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light w-100 position-absolute top-0">
     <div class="container">
       <a class="navbar-brand" href="beranda">Sistem Sekolah</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -50,16 +65,10 @@
   </nav>
 
   <!-- Konten Utama -->
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card shadow-lg p-4 text-center">
-          <h1 class="fw-bold">Selamat Datang di Sistem Penjadwalan Guru SDN 4 Meureudu</h1>
-          <p class="mt-3">Sistem ini digunakan untuk melihat jadwal mengajar guru di sekolah dasar.</p>
-          <a href="/jadwal-guru" class="btn btn-primary">Lihat Jadwal Guru</a>
-        </div>
-      </div>
-    </div>
+  <div class="card shadow-lg text-center">
+    <h1 class="fw-bold">Selamat Datang di Sistem Penjadwalan Guru SDN 4 Meureudu</h1>
+    <p class="mt-4">Sistem ini digunakan untuk melihat jadwal mengajar guru di sekolah dasar.</p>
+    <a href="/jadwal-guru" class="btn btn-primary">Lihat Jadwal Guru</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

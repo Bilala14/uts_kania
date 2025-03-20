@@ -77,31 +77,49 @@
         <tbody>
           <tr>
             <td>Senin</td>
-            <td>Ahmad Syarif</td>
-            <td>07:00 - 10:00</td>
+            <td>Rosmiati, S.Pd, Mulidayani, S.Pd, Darniati, S.Pd</td>
+            <td>07:00 - 12:00</td>
           </tr>
           <tr>
             <td>Selasa</td>
-            <td>Afdhal Muliani, Spd.I</td>
-            <td>09:00 - 12:00</td>
+            <td>Nuriala, S.Pd, Mawarni, S.Pd, Yurniati, S.Pd</td>
+            <td>07:00 - 12:00</td>
           </tr>
           <tr>
             <td>Rabu</td>
-            <td>Fitriani Rahma</td>
-            <td>08:00 - 11:00</td>
+            <td>Mardiana, S.Pd, Farhayati, S.Pd, Cut Misni, S.Pd</td>
+            <td>07:00 - 12:00</td>
           </tr>
           <tr>
             <td>Kamis</td>
-            <td>Nurul Hidayah</td>
-            <td>07:30 - 10:30</td>
+            <td>Yurniati, S.Pd, Sumiati, S.Pd, Mulidayani, S.Pd</td>
+            <td>07:00 - 12:00</td>
           </tr>
           <tr>
             <td>Jumat</td>
-            <td>Rahmat Hidayat</td>
-            <td>09:00 - 11:00</td>
+            <td>Sri Wahyuni, S.Pd, Afdhal Muliani, S.Pd.I, Agamal, S.Pd</td>
+            <td>07:00 - 11:00</td>
+          </tr>
+          <tr>
+            <td>Sabtu</td>
+            <td>Dinaiti, S.Pd, Ekawati, S.Pd, Mawarni, S.Pd</td>
+            <td>07:00 - 12:00</td>
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <!-- Catatan Tugas -->
+    <div class="mt-4">
+      <h4>Catatan Tugas Piket:</h4>
+      <ul>
+        <li>Menyambut Siswa di depan pagar sekolah setiap pagi.</li>
+        <li>Mempersiapkan kegiatan pagi sebelum belajar setiap hari seperti senam,literasi,muhadharah,dan Yasinan.</li>
+        <li>Mengawasi kedisiplinan siswa di sekolah.</li>
+        <li>Menjaga kebersihan dan kerapihan lingkungan sekolah.</li>
+        <li>Mengkoordinasikan ketertiban saat jam istirahat.</li>
+        <li>Mengisi laporan harian piket guru.</li>
+      </ul>
     </div>
   </div>
 
