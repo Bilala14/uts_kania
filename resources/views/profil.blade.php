@@ -83,10 +83,13 @@
         Beuracan, Kecamatan Meureudu, Kabupaten Pidie Jaya, Provinsi Aceh.</p>
 
       <h4 class="mt-4">📞 Kontak</h4>
-      <p>Email: sdn4meureudu@email.com</p>
-      <p>Telepon: (0653) 123456</p>
+      <p>Email: sdnegeribeuracan@yahoo.com</p>
+      <p>Operator: Misnawati</p>
     </div>
   </div>
+  <footer class="fixed-bottom bg-dark text-white py-2 mt-4 text-center">
+    Copyright &copy; Kania Nabila Muntaz - 2025
+</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

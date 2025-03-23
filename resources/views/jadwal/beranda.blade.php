@@ -66,6 +66,10 @@
         </div>
     </div>
 
+    <footer class="fixed-bottom bg-dark text-white py-2 mt-4 text-center">
+        Copyright &copy; Kania Nabila Muntaz - 2025
+    </footer>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

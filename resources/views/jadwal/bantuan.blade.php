@@ -65,7 +65,8 @@
       <h4>📞 Hubungi Kami</h4>
       <p>Jika mengalami masalah atau butuh bantuan lebih lanjut, silakan hubungi:</p>
       <ul>
-        <li><strong>Email:</strong> support@sekolahsdn4meureudu.com</li>
+        <li><strong>Email:</strong> sdnegeribeuracan@yahoo.com</li>
+        <li><strong>Oprator:</strong> Misnawati</li>
         <li><strong>Telepon:</strong> +62 812-3456-7890</li>
         <li><strong>Alamat:</strong> SDN 4 Meureudu, Aceh</li>
       </ul>
@@ -120,6 +121,9 @@
 
     </div>
   </div>
+  <footer class="fixed-bottom bg-dark text-white py-2 mt-4 text-center">
+    Copyright &copy; Kania Nabila Muntaz - 2025
+</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -41,5 +41,8 @@
 
         <a href="{{ url('/jadwal/tambah') }}" class="btn btn-primary">Tambah Jadwal</a>
     </div>
+    <footer class="fixed-bottom bg-dark text-white py-2 mt-4 text-center">
+        Copyright &copy; Kania Nabila Muntaz - 2025
+    </footer>
 </body>
 </html>
